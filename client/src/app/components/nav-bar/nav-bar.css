@@ -1,0 +1,62 @@
+nav-bar .navbar {
+    height: 50px;
+    max-height: 50px;
+    left: 220px;
+    transition: all 0.3s ease;
+    background-color: #3a3f44;
+    background-image: linear-gradient(#52575c, #3a3f44 70%, #3a3f44);
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #0c0d0e;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav-bar .navbar-toggle {
+    float: left;
+    border: 0;
+    margin-top: 9px;
+}
+
+nav-bar .navbar-brand {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: #bbbfc2 !important;
+    font-size: 20px;
+}
+
+nav-bar .navbar-toggle:hover, .navbar-toggle:focus, .navbar-toggle:active {
+    background-color: transparent !important;
+}
+
+nav-bar .navbar-tools {
+    position: absolute;
+    right: 20px;
+}
+
+nav-bar .btn-option {
+    padding: 6px 7px 6px 7px;
+    font-size: 18px;
+}
+
+nav-bar .dropdown-menu li a {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    navbar .navbar {
+        left: 0;
+    }
+
+    navbar .navbar-brand {
+        padding-left: 0;
+    }
+
+    navbar .navbar-toggle {
+        margin-left: 10px;
+    }
+
+    navbar .navbar-tools {
+        right: 6px;
+    }
+}

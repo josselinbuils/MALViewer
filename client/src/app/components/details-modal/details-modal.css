@@ -1,0 +1,47 @@
+.details-modal .modal-dialog {
+    width: 750px;
+    top: 35%;
+}
+
+.details-modal .anime-details > .row > div {
+    margin-bottom: 9px;
+}
+
+.details-modal .anime-details {
+    margin-top: -5px;
+}
+
+.details-modal .anime-synopsis {
+    margin-top: 5px;
+    text-align: justify;
+}
+
+.details-modal .add-dropdown {
+    margin-right: -4px !important;
+}
+
+.details-modal img {
+    width: 113px;
+    height: 155px;
+    margin-bottom: 20px;
+}
+
+.anime-details > .row > .col-xs-6:first-child, .anime-details > .row > .col-xs-12 {
+    padding-left: 25px;
+}
+
+@media (max-width: 767px) {
+
+    .details-modal img {
+        width: 100%;
+        height: auto;
+        max-height: 185px;
+        max-width: 135px;
+    }
+
+    .details-modal .other-titles {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

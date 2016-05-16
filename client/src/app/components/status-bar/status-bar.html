@@ -1,0 +1,35 @@
+<div class="navbar navbar-default navbar-fixed-bottom" ng-class="{ 'visible': getLoadStatus() }">
+    <div class="container">
+        <div class="status-bar-sort" ng-show="getSortAttr()">
+            <span class="sortby">Sort by</span>
+            <div class="dropup" dropdown>
+                <button class="btn btn-flat" dropdown-toggle type="button" id="sortButton">
+                    <span ng-bind="getSortCaption()"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="sortButton">
+                    <li ng-repeat="(sort, caption) in sortCaptions">
+                        <a href="" ng-click="sortBy(sort)" ng-bind="caption"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropup" dropdown>
+                <button class="btn btn-flat" dropdown-toggle type="button" id="orderButton">
+                    <span ng-bind="getOrderCaption()"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="orderButton">
+                    <li ng-repeat="(order, caption) in orderCaptions">
+                        <a href="" ng-click="setOrder(order)" ng-bind="caption"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="status-bar-status">
+            <progressbar ng-show="getLoadStatus()" animate="false" value="getLoadProgression()"
+                         type="default"></progressbar>
+            <span ng-bind="getLoadStatus()"></span>
+            <span class="list-infos" ng-hide="getLoadStatus()" ng-bind="getInfo()"></span>
+        </div>
+    </div>
+</div>

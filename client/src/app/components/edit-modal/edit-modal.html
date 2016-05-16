@@ -1,0 +1,37 @@
+<form class="form-horizontal">
+    <div class="modal-header">
+        <h3 class="modal-title"><span class="glyphicon glyphicon-edit"></span>Edit</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-xs-4 control-label">Status</label>
+            <div class="col-xs-8">
+                <select class="form-control" ng-model="myStatus">
+                    <option ng-repeat="list in lists" ng-selected="list === myStatus"
+                            value="{{list}}" ng-bind="listCaptions[list]"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">Episodes</label>
+            <div class="col-xs-8">
+                <input class="form-control" type="number" ng-model="myWatchedEpisodes" required/>
+                <span> / &nbsp;{{anime.episodes || format}}</span>
+            </div>
+        </div>
+        <div class="form-group rating-container">
+            <label class="col-xs-4 control-label">Score</label>
+            <div class="col-xs-8">
+                <rating ng-model="myScore" max="10"></rating>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="editAnime()">
+            <span class="glyphicon glyphicon-floppy-disk glyphicon-marged"></span>Save
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="close()">
+            <span class="glyphicon glyphicon-remove glyphicon-marged"></span>Cancel
+        </button>
+    </div>
+</form>

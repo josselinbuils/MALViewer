@@ -1,0 +1,51 @@
+<div class="container">
+
+    <!-- Animes  -->
+    <div class="animes">
+        <div class="anime"
+             ng-repeat="anime in getAnimes() | orderBy: getSortAttr():(getOrder() === 'desc')"
+             ng-click="!$root.toggled || !$root.mobile || openDetailsModal(anime)">
+            <div class="anime-caption">
+                <span ng-bind-html="anime.title"></span>
+                <span class="glyphicon glyphicon-ok-sign check-sign" ng-show="showCheckSign(anime)"></span>
+            </div>
+            <div class="anime-tools hidden-xs">
+                <button class="btn btn-flat" ng-click="openDetailsModal(anime)">
+                    <span class="glyphicon glyphicon-zoom-in"></span>
+                </button>
+                <!--<button class="btn btn-flat" ng-show="isAnimeAddable(anime)">-->
+                    <!--<span class="glyphicon glyphicon-plus"></span>-->
+                <!--</button>-->
+                <button class="btn btn-flat" ng-show="isAnimeEditable(anime)" ng-click="openEditModal(anime)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button class="btn btn-flat" ng-show="isAnimeEditable(anime)" ng-click="deleteAnime(anime)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+            <div class="anime-rbadge" ng-bind="getRBadge(anime)"></div>
+            <div class="anime-lbadge" ng-show="showLBadge()">
+                <span ng-bind="getLBadge(anime, $index)"></span>
+                <span class="glyphicon glyphicon-plus inc-episode" ng-show="showIncludeEpisodes()"
+                      ng-click="incWatchedEpisodes(anime)"></span>
+            </div>
+            <div class="anime-image" ng-style="getImageStyle(anime)"></div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav ng-show="showPagination()">
+        <ul class="pagination">
+            <li ng-class="{ 'disabled': getPage() === 1 }">
+                <a href="" ng-click="viewPrevPage()">Prev</a>
+            </li>
+            <li class="active">
+                <a href="" ng-bind="getPage()"></a>
+            </li>
+            <li>
+                <a href="" ng-click="viewNextPage()">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>

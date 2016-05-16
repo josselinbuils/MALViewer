@@ -1,0 +1,158 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-bind-html="anime.title"></h3>
+    <div class="other-titles grey" ng-show="anime.synonyms.length > 0">(<span ng-bind-html="anime.synonyms"></span>)
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-5 col-sm-2">
+            <img ng-src="{{anime.imageUrl}}" alt="">
+        </div>
+        <div class="visible-xs col-xs-7 anime-details">
+            <div class="row">
+                <div class="col-xs-12">Type:&nbsp;
+                    <span class="grey" ng-bind-html="anime.type"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Episodes:&nbsp;
+                    <span class="grey" ng-bind-html="anime.episodes || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Members score:&nbsp;
+                    <span class="grey" ng-bind-html="anime.membersScore || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Score:&nbsp;
+                    <span class="grey" ng-bind-html="anime.score || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Popularity:&nbsp;
+                    <span class="grey" ng-bind-html="anime.popularity || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Ranked:&nbsp;
+                    <span class="grey" ng-bind-html="anime.rank || format"></span>
+                </div>
+            </div>
+        </div>
+        <div class="visible-xs col-xs-12 anime-details">
+            <div class="row">
+                <div class="col-xs-12">Status:&nbsp;
+                    <span class="grey" ng-bind-html="anime.status"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Aired:&nbsp;
+                    <span class="grey">{{anime.startDate | date:'MMM d, y'}} to {{anime.endDate | date:'MMM d, y'}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Rating:&nbsp;
+                    <span class="grey" ng-bind-html="anime.rating"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Studios:&nbsp;
+                    <span class="grey" ng-bind-html="anime.studios.join(', ')"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Genres:&nbsp;
+                    <span class="grey" ng-bind-html="anime.genres.join(', ')"></span>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-10 anime-details">
+            <div class="row">
+                <div class="col-xs-6">Type:&nbsp;
+                    <span class="grey" ng-bind-html="anime.type"></span>
+                </div>
+                <div class="col-xs-6">Status:&nbsp;
+                    <span class="grey" ng-bind-html="anime.status"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Aired:&nbsp;
+                    <span class="grey">{{anime.startDate | date:'MMM d, y'}} to {{anime.endDate | date:'MMM d, y'}}</span>
+                </div>
+                <div class="col-xs-6">Episodes:&nbsp;
+                    <span class="grey" ng-bind-html="anime.episodes || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Members score:&nbsp;
+                    <span class="grey" ng-bind-html="anime.membersScore || format"></span>
+                </div>
+                <div class="col-xs-6">Score:&nbsp;
+                    <span class="grey" ng-bind-html="anime.myScore || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Popularity:&nbsp;
+                    <span class="grey" ng-bind-html="anime.popularity || format"></span>
+                </div>
+                <div class="col-xs-6">Ranked:&nbsp;
+                    <span class="grey" ng-bind-html="anime.rank || format"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Rating:&nbsp;
+                    <span class="grey" ng-bind-html="anime.rating"></span>
+                </div>
+                <div class="col-xs-6">Studios:&nbsp;
+                    <span class="grey" ng-bind-html="anime.studios.join(', ')"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">Genres:&nbsp;
+                    <span class="grey" ng-bind-html="anime.genres.join(', ')"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row anime-synopsis">
+        <div class="col-xs-12">
+            Synopsis:&nbsp;
+            <span class="grey" ng-bind-html="anime.synopsis"></span>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="dropup add-dropdown" dropdown ng-show="isAnimeAddable()">
+        <button class="btn btn-primary" dropdown-toggle type="button" id="addAnimeButton"><span
+                class="glyphicon glyphicon-plus glyphicon-marged"></span>Add<span class="caret"></span></button>
+        <ul class="dropdown-menu" aria-labelledby="addAnimeButton">
+            <li ng-repeat="list in lists">
+                <a href="" ng-click="addAnime(list)" ng-bind-html="listCaptions[list]"></a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="btn btn-primary" ng-show="isAnimeEditable()" ng-click="editAnime()"><span
+            class="glyphicon glyphicon-edit glyphicon-marged"></span>Edit
+    </button>
+    <button type="button" class="btn btn-primary" ng-show="isAnimeEditable()" ng-click="deleteAnime()"><span
+            class="glyphicon glyphicon-trash glyphicon-marged"></span>Delete
+    </button>
+    <div class="dropup hidden-xs" dropdown>
+        <button class="btn btn-primary" dropdown-toggle type="button" id="moreInfosButton">
+            <span class="glyphicon glyphicon-plus-sign glyphicon-marged"></span>More
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="moreInfosButton">
+            <li ng-repeat="site in sites">
+                <a ng-href="{{site.url}}" target="_blank">
+                    <span class="glyphicon glyphicon-globe glyphicon-marged"></span>
+                    <span ng-bind="site.name"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="close()">
+        <span class="glyphicon glyphicon-remove glyphicon-marged"></span>Close
+    </button>
+</div>

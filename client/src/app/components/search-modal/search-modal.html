@@ -1,0 +1,73 @@
+<form class="form-horizontal">
+    <div class="modal-header">
+        <h3 class="modal-title"><span class="glyphicon glyphicon-search"></span>Search</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Search</label>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" ng-model="search" focus/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Type</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" ng-model="search_type.value"
+                                ng-options="item.value as item.label for item in types"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Score</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" ng-model="search_score.value"
+                                ng-options="item.value as item.label for item in scores"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Status</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" ng-model="search_status.value"
+                                ng-options="item.value as item.label for item in status"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Rated</label>
+                    <div class="col-xs-8">
+                        <select class="form-control" ng-model="search_rated.value"
+                                ng-options="item.value as item.label for item in ratings"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">Start date</label>
+                    <div class="col-xs-8">
+                        <select class="form-control select-month" ng-model="search_startMonth.value"
+                                ng-options="item.value as item.label for item in months"></select>
+                        <select class="form-control select-year" ng-model="search_startYear.value"
+                                ng-options="item.value as item.label for item in years"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">End date</label>
+                    <div class="col-xs-8">
+                        <select class="form-control select-month" ng-model="search_endMonth.value"
+                                ng-options="item.value as item.label for item in months"></select>
+                        <select class="form-control select-year" ng-model="search_endYear.value"
+                                ng-options="item.value as item.label for item in years"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="applySearch()" ng-disabled="search.length < 2">
+            <span class="glyphicon glyphicon-search glyphicon-marged"></span>Search
+        </button>
+        <button type="button" class="btn btn-primary" ng-click="close()"><span
+                class="glyphicon glyphicon-remove glyphicon-marged"></span>Cancel
+        </button>
+    </div>
+</form>

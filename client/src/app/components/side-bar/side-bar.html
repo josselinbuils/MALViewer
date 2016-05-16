@@ -1,0 +1,36 @@
+<div class="side-bar-login">
+    <span ng-bind="login"></span>
+    <span ng-show="guest"> (guest)</span>
+    <button class="btn btn-flat btn-sm pull-right" ng-click="logout()">
+        <span class="glyphicon glyphicon-lock"></span>
+    </button>
+</div>
+<div class="side-bar-body">
+    <div class="side-bar-search">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="search">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary" ng-click="applySearch()"
+                  ng-disabled="getLoadStatus() === 'Searching...'">
+              <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+            </div>
+        </form>
+    </div>
+    <div class="side-bar-lists">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="side-bar-title">My lists</li>
+            <li ng-class="{ 'active': watchingList === list }" ng-repeat="list in lists.user">
+                <a href="" ng-click="viewList(list)" ng-bind="listCaptions[list]"></a>
+                <span class="list-deco"></span>
+            </li>
+            <li class="side-bar-title">Top lists</li>
+            <li ng-class="{ 'active': watchingList === list }" ng-repeat="list in lists.top">
+                <a href="" ng-click="viewTopList(list)" ng-bind="listCaptions[list]"></a>
+                <span class="list-deco"></span>
+            </li>
+        </ul>
+    </div>
+</div>

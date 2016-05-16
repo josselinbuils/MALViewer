@@ -1,0 +1,25 @@
+.edit-modal .modal-dialog {
+    width: 260px;
+}
+
+.edit-modal input[type=number] {
+    width: 60px;
+    margin-right: 7px;
+    display: inline-block;
+}
+
+.edit-modal .rating-container {
+    margin-top: -10px;
+}
+
+.edit-modal .rating-container > div {
+    padding-top: 7px;
+}
+
+.edit-modal .rating-container span {
+    outline: 0 !important;
+}
+
+.chrome .edit-modal .glyphicon-star:before, .chrome .edit-modal .glyphicon-star-empty:before {
+    margin-right: -4px;
+}
