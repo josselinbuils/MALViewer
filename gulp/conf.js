@@ -11,12 +11,14 @@ var gutil = require('gulp-util');
 /**
  *  The main paths of your project handle these with care
  */
-exports.paths = {
+var paths = {
     src: 'client/src',
     dist: 'client/dist',
     tmp: 'client/.tmp',
-    e2e: 'client/e2e'
+    e2e: 'client/e2e',
+    bower_components: 'client/bower_components'
 };
+exports.paths = paths;
 
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
@@ -25,7 +27,7 @@ exports.paths = {
  */
 exports.wiredep = {
     exclude: [/bootstrap.js$/],
-    directory: 'client/bower_components'
+    directory: paths.bower_components
 };
 
 /**
