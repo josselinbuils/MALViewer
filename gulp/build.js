@@ -42,14 +42,10 @@ gulp.task('html', ['inject', 'partials'], function () {
 
     return gulp.src(path.join(conf.paths.tmp, '/serve/index.html'))
         .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-        .pipe($.useref({
-            transformPath: function (filePath) {
-                // Weird but needed hack
-                return filePath.replace(process.cwd(), process.cwd() + '/client');
-            }
-        }))
-        //.pipe($.if('*.js', $.ngAnnotate()))
-        //.pipe($.if('*.js', $.uglify({preserveComments: $.uglifySaveLicense})).on('error', conf.errorHandler('Uglify')))
+        .pipe($.useref())
+        .pipe($.size({title: path.join(conf.paths.dist, '/'), showFiles: true}))
+        .pipe($.if('scripts/vendor.js', $.ngAnnotate()))
+        .pipe($.if('scripts/vendor.js', $.uglify({preserveComments: $.uglifySaveLicense})).on('error', conf.errorHandler('Uglify')))
         .pipe($.if('*.css', $.csso()))
         .pipe($.if('index.html', $.minifyHtml({
             empty: true,
@@ -60,7 +56,7 @@ gulp.task('html', ['inject', 'partials'], function () {
         .pipe($.if('!index.html', $.rev()))
         .pipe($.revReplace())
         .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
-        //.pipe($.size({title: path.join(conf.paths.dist, '/'), showFiles: true}));
+        .pipe($.size({title: path.join(conf.paths.dist, '/'), showFiles: true}));
 });
 
 // Only applies for fonts from bower dependencies

@@ -20,9 +20,9 @@
     "overrides": {
         "bootstrap": {
             "main": [
-                "./client/dist/css/bootstrap.css",
-                "./client/dist/js/bootstrap.js",
-                "./client/dist/fonts/*"
+                "dist/css/bootstrap.css",
+                "dist/js/bootstrap.js",
+                "dist/fonts/*"
             ]
         }
     }
