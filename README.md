@@ -1,2 +1,2 @@
 # MALViewer
->MALViewer allows you to view and manage your animelists from myanimelist.net.
+>Angular / Node.js web application which allows to view and manage animelists from MyAnimeList.
