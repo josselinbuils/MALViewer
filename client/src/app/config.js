@@ -4,7 +4,7 @@
     angular
         .module('malv')
         .constant('config', {
-            apiUrl: 'http://vps269412.ovh.net:8080',
+            apiUrl: 'https://www.malviewer.net/api',
             imageRatio: 1.41, // imageHeight = imageRatio * imageWidth
             minNbAnimesByRow: 2,
             maxNbAnimesByRow: 20,
