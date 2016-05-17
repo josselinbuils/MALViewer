@@ -24,19 +24,19 @@ app.get('/get/:url', (req, res) => {
         method: 'GET'
     };
 
-    let request = http.request(reqConfig, function (res) {
+    let request = http.request(reqConfig, function (response) {
 
         let buffer = new Buffer();
 
-        if (res.statusCode === 200) {
+        if (response.statusCode === 200) {
 
-            res.writeHead(200, {'Content-Type': res.getHeader('Content-Type')});
+            res.writeHead(200, {'Content-Type': response.getHeader('Content-Type')});
 
-            res.on('data', function (data) {
+            response.on('data', function (data) {
                 buffer.write(data, 'binary');
             });
 
-            res.on('end', function () {
+            response.on('end', function () {
                 res.end(buffer);
             });
 
