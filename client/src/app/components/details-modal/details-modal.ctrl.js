@@ -65,6 +65,10 @@
             editModal.open($scope.anime);
         };
 
+        $scope.getImageUrl = function (anime) {
+            return 'https://' + $location.host() + '/get/' + encodeURIComponent(anime.imageUrl);
+        };
+
         $scope.isAnimeAddable = function () {
             return !animeService.guess && !$scope.anime.myStatus;
         };
