@@ -2,6 +2,7 @@
 
 const express = require('express');
 const http = require('http');
+const request = require('request');
 
 const Logger = require('./logger');
 
@@ -13,44 +14,14 @@ if (!port) {
 }
 
 app.get('/get/:url', (req, res) => {
-
-    let url = decodeURIComponent(req.params.url).match(/https?:\/\/([^/]*)(.*)/);
-
-    Logger.info('Get ' + url[1] + url[2]);
-
-    let reqConfig = {
-        hostname: url[1],
-        path: url[2],
-        method: 'GET'
-    };
-
-    let request = http.request(reqConfig, function (response) {
-
-        let buffer = '';
-
-        if (response.statusCode === 200) {
-
-            res.writeHead(200, {'Content-Type': 'image/jpg'});
-
-            response.on('data', function (data) {
-                buffer += data;
-            });
-
-            response.on('end', function () {
-                res.end(buffer);
-            });
-
+    request(decodeURIComponent(req.params.url), function (error, response, data) {
+        if (!error && response.statusCode == 200) {
+            res.setHeader('Content-Type', 'image/jpg');
+            res.end(data);
         } else {
-            res.status(res.statusCode).end(res.statusMessage);
+            res.status(response.statusCode).end(response.statusMessage);
         }
     });
-
-    request.on('error', function (error) {
-        Logger.error(error.code + ' ' + url);
-        res.status(500).end(error.code);
-    });
-
-    request.end();
 });
 
 app.use(express.static(process.cwd() + '/client/dist'));
