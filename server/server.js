@@ -26,7 +26,7 @@ app.get('/get/:url', (req, res) => {
 
     let request = http.request(reqConfig, function (response) {
 
-        let buffer;
+        let buffer = '';
 
         if (response.statusCode === 200) {
 
