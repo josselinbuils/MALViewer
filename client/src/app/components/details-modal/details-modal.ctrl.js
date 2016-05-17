@@ -5,9 +5,9 @@
         .module('malv')
         .controller('DetailsModalCtrl', DetailsModalCtrl);
 
-    DetailsModalCtrl.$inject = ['$log', '$modalInstance', '$scope', '$window', 'alertModal', 'anime', 'animeListService', 'animeService', 'constants', 'editModal', 'statusService'];
+    DetailsModalCtrl.$inject = ['$location', '$log', '$modalInstance', '$scope', '$window', 'alertModal', 'anime', 'animeListService', 'animeService', 'constants', 'editModal', 'statusService'];
 
-    function DetailsModalCtrl($log, $modalInstance, $scope, $window, alertModal, anime, animeListService, animeService, constants, editModal, statusService) {
+    function DetailsModalCtrl($location, $log, $modalInstance, $scope, $window, alertModal, anime, animeListService, animeService, constants, editModal, statusService) {
 
         $scope.anime = anime; // Active anime info
         $scope.lists = animeService.getUserLists();
