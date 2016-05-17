@@ -16,6 +16,8 @@ app.get('/get/:url', (req, res) => {
 
     let url = decodeURIComponent(req.params.url).match(/(https?:\/\/[^/]*)(.*)/);
 
+    Logger.info('Get ' + url[1] + url[2]);
+
     let reqConfig = {
         hostname: url[1],
         path: url[2],
