@@ -46,7 +46,8 @@ app.get('/get/:url', (req, res) => {
     });
 
     request.on('error', function (error) {
-        res.status(500).end(error.code);
+        Logger.error(error.message + ' ' + url);
+        res.status(500).end(error.message);
     });
 
     request.end();
