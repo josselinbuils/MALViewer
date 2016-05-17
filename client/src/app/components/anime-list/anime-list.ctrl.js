@@ -5,9 +5,9 @@
         .module('malv')
         .controller('AnimelistCtrl', AnimelistCtrl);
 
-    AnimelistCtrl.$inject = ['$filter', '$log', '$scope', '$timeout', '$window', 'alertModal', 'animeDataService', 'animeListService', 'animeService', 'config', 'constants', 'detailsModal', 'editModal', 'statusService'];
+    AnimelistCtrl.$inject = ['$filter', '$location', '$log', '$scope', '$timeout', '$window', 'alertModal', 'animeDataService', 'animeListService', 'animeService', 'config', 'constants', 'detailsModal', 'editModal', 'statusService'];
 
-    function AnimelistCtrl($filter, $log, $scope, $timeout, $window, alertModal, animeDataService, animeListService, animeService, config, constants, detailsModal, editModal, statusService) {
+    function AnimelistCtrl($filter, $location, $log, $scope, $timeout, $window, alertModal, animeDataService, animeListService, animeService, config, constants, detailsModal, editModal, statusService) {
 
         var imagesWidth, imagesHeight;
         var resizeTimeout;
@@ -43,7 +43,7 @@
                 width: imagesWidth + 'px',
                 height: imagesHeight + 'px',
                 'background-size': imagesWidth + 'px ' + imagesHeight + 'px',
-                'background-image': 'url(' + config.apiUrl + '/get/' + encodeURIComponent(anime.imageUrl) + ')'
+                'background-image': 'url(https://' + $location.host() + '/get/' + encodeURIComponent(anime.imageUrl) + ')'
             };
         };
 
