@@ -30,7 +30,7 @@ app.get('/get/:url', (req, res) => {
 
         if (response.statusCode === 200) {
 
-            res.writeHead(200, {'Content-Type': response.getHeader('Content-Type')});
+            res.writeHead(200, {'Content-Type': response.headers['Content-Type']});
 
             response.on('data', function (data) {
                 buffer += data;
