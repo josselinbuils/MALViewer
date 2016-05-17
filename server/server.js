@@ -22,8 +22,7 @@ app.get('/get/:url', (req, res) => {
     request(url, function (error, response, data) {
         if (!error && response.statusCode == 200) {
             res.setHeader('Content-Type', 'image/jpg');
-            console.log(data);
-            res.end(data);
+            res.end(new Buffer(data).toString());
         } else {
             res.status(response.statusCode).end(response.statusMessage);
         }
