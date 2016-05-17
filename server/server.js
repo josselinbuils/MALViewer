@@ -19,7 +19,7 @@ app.get('/get/:url', (req, res) => {
 
     Logger.info('GET ' + url);
 
-    request(url, function (error, response, data) {
+    request(url, {encoding: null}, function (error, response, data) {
         if (!error && response.statusCode == 200) {
             res.setHeader('Content-Type', 'image/jpg');
             res.end(data, 'binary');
