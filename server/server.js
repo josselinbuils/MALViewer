@@ -26,14 +26,14 @@ app.get('/get/:url', (req, res) => {
 
     let request = http.request(reqConfig, function (response) {
 
-        let buffer = new Buffer();
+        let buffer;
 
         if (response.statusCode === 200) {
 
             res.writeHead(200, {'Content-Type': response.getHeader('Content-Type')});
 
             response.on('data', function (data) {
-                buffer.write(data, 'binary');
+                buffer += data;
             });
 
             response.on('end', function () {
