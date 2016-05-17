@@ -14,9 +14,15 @@ if (!port) {
 }
 
 app.get('/get/:url', (req, res) => {
-    request(decodeURIComponent(req.params.url), function (error, response, data) {
+
+    let url = decodeURIComponent(req.params.url);
+
+    Logger.info('GET ' + url);
+
+    request(url, function (error, response, data) {
         if (!error && response.statusCode == 200) {
             res.setHeader('Content-Type', 'image/jpg');
+            console.log(data);
             res.end(data);
         } else {
             res.status(response.statusCode).end(response.statusMessage);
