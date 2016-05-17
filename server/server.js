@@ -14,7 +14,7 @@ if (!port) {
 
 app.get('/get/:url', (req, res) => {
 
-    let url = decodeURIComponent(req.params.url).match(/(https?:\/\/[^/]*)(.*)/);
+    let url = decodeURIComponent(req.params.url).match(/https?:\/\/([^/]*)(.*)/);
 
     Logger.info('Get ' + url[1] + url[2]);
 
@@ -46,8 +46,8 @@ app.get('/get/:url', (req, res) => {
     });
 
     request.on('error', function (error) {
-        Logger.error(error.message + ' ' + url);
-        res.status(500).end(error.message);
+        Logger.error(error.code + ' ' + url);
+        res.status(500).end(error.code);
     });
 
     request.end();
