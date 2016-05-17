@@ -43,8 +43,8 @@ app.get('/get/:url', (req, res) => {
         }
     });
 
-    request.on('error', function () {
-        res.status(500).end();
+    request.on('error', function (error) {
+        res.status(500).end(error.code);
     });
 
     request.end();
