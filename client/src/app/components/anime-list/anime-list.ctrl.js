@@ -43,7 +43,7 @@
                 width: imagesWidth + 'px',
                 height: imagesHeight + 'px',
                 'background-size': imagesWidth + 'px ' + imagesHeight + 'px',
-                'background-image': 'url(https://' + $location.host() + '/get/' + encodeURIComponent(anime.imageUrl) + ')'
+                'background-image': 'url(https://' + $location.host() + '/url/' + encodeURIComponent(anime.imageUrl) + ')'
             };
         };
 

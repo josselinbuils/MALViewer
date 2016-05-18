@@ -66,7 +66,7 @@
         };
 
         $scope.getImageUrl = function (anime) {
-            return 'https://' + $location.host() + '/get/' + encodeURIComponent(anime.imageUrl);
+            return 'https://' + $location.host() + '/url/' + encodeURIComponent(anime.imageUrl);
         };
 
         $scope.isAnimeAddable = function () {
