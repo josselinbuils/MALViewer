@@ -22,7 +22,10 @@ app.get('/get/:url', (req, res) => {
 
     Logger.info('GET ' + url);
 
-    proxy.web(req, res, {target: url});
+    proxy.web(req, res, {
+        prependPath: false,
+        target: url
+    });
 });
 
 app.use(express.static(process.cwd() + '/client/dist'));
