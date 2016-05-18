@@ -23,6 +23,7 @@ app.get('/get/:url', (req, res) => {
     Logger.info('GET ' + url);
 
     proxy.web(req, res, {
+        changeOrigin: true,
         prependPath: false,
         target: url
     });
