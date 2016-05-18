@@ -2,7 +2,7 @@
 
 const express = require('express');
 const http = require('http');
-const request = require('request');
+const httpProxy = require('http-proxy');
 
 const Logger = require('./logger');
 
@@ -13,20 +13,16 @@ if (!port) {
     throw Error('Port should be provided as environment variable')
 }
 
+let proxy = httpProxy.createProxyServer({});
+proxy.on('error', error => Logger.error('Proxy error: ' + error.message));
+
 app.get('/get/:url', (req, res) => {
 
     let url = decodeURIComponent(req.params.url);
 
     Logger.info('GET ' + url);
 
-    request(url, {encoding: null}, function (error, response, data) {
-        if (!error && response.statusCode == 200) {
-            res.setHeader('Content-Type', 'image/jpg');
-            res.end(data, 'binary');
-        } else {
-            res.status(response.statusCode).end(response.statusMessage);
-        }
-    });
+    proxy.web(req, res, {target: url});
 });
 
 app.use(express.static(process.cwd() + '/client/dist'));
