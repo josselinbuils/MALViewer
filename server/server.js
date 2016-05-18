@@ -25,7 +25,6 @@ app.get('/get/:url', (req, res) => {
     proxy.web(req, res, {
         changeOrigin: true,
         ignorePath: true,
-        prependPath: false,
         target: url
     });
 });
