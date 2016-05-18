@@ -1,8 +1,8 @@
 'use strict';
 
 const express = require('express');
+const helmet = require('helmet');
 const http = require('http');
-const httpProxy = require('http-proxy');
 
 const Logger = require('./logger');
 
@@ -13,7 +13,14 @@ if (!port) {
     throw Error('Port should be provided as environment variable')
 }
 
+app.use((req, res, next) => {
+    Logger.info(req.method + ' ' + req.url);
+    next();
+});
+
+app.use(helmet());
 app.use(express.static(process.cwd() + '/client/dist'));
+
 app.listen(port);
 
 Logger.info('MALViewer is listening on port ' + port);
