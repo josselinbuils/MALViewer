@@ -38,9 +38,10 @@
 
                 if (animes.length > 0) {
                     animeListService.setAnimes(animes);
-                    setInfo(animes.length + (animes.length > 1 ? ' results' : ' result') + ' for "' + search + '"');
+                    animeListService.setSortAttr(null);
+                    statusService.setInfo(animes.length + (animes.length > 1 ? ' results' : ' result') + ' for "' + search + '"');
                 } else {
-                    setInfo('No result for "' + search + '" :(');
+                    statusService.setInfo('No result for "' + search + '" :(');
                 }
 
                 statusService.setInfo(animes.length + ' animes');
