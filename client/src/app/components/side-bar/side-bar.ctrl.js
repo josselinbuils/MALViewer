@@ -44,8 +44,6 @@
                     statusService.setInfo('No result :(');
                 }
 
-                statusService.setInfo(animes.length + ' animes');
-
             }, function (error) {
                 if (error.status !== -1) {
                     alertModal.show('Error', error.statusText).then(function () {
