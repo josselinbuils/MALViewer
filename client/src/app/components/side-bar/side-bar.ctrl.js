@@ -39,9 +39,9 @@
                 if (animes.length > 0) {
                     animeListService.setAnimes(animes);
                     animeListService.setSortAttr(null);
-                    statusService.setInfo(animes.length + (animes.length > 1 ? ' results' : ' result') + ' for "' + search + '"');
+                    statusService.setInfo(animes.length + (animes.length > 1 ? ' results' : ' result'));
                 } else {
-                    statusService.setInfo('No result for "' + search + '" :(');
+                    statusService.setInfo('No result :(');
                 }
 
                 statusService.setInfo(animes.length + ' animes');
@@ -51,14 +51,6 @@
                     alertModal.show('Error', error.statusText).then(function () {
                         statusService.setLoadStatus(null);
                     });
-                }
-            });
-
-            $scope.$applyAsync(function () {
-                $scope.search = '';
-
-                if (!$rootScope.toggled) {
-                    $rootScope.toggled = true;
                 }
             });
         };
