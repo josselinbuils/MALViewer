@@ -19,6 +19,11 @@
         $scope.applySearch = function () {
             $log.debug('SidebarCtrl->applySearch()');
 
+            $scope.watchingList = 'search';
+
+            animeListService.setWatchingList('search');
+            animeListService.setAnimes([]);
+
             statusService.setInfo(null);
             statusService.setLoadStatus('Searching...');
             statusService.setProgression(0);
