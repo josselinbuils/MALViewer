@@ -19,7 +19,39 @@
         $scope.applySearch = function () {
             $log.debug('SidebarCtrl->applySearch()');
 
-            animeService.applySearch($scope.search);
+            statusService.setInfo(null);
+            statusService.setLoadStatus('Searching...');
+            statusService.setProgression(0);
+
+            $rootScope.disableScrolling = false;
+
+            if (!$rootScope.toggled) {
+                $rootScope.toggled = true;
+            }
+
+            var timeCounter = new utils.TimeCounter();
+
+            animeService.search($scope.search).then(function (animes) {
+                $log.debug('SidebarCtrl->viewList: search done in ' + timeCounter.getTime() + 'ms');
+
+                statusService.setProgression(100);
+
+                if (animes.length > 0) {
+                    animeListService.setAnimes(animes);
+                    setInfo(animes.length + (animes.length > 1 ? ' results' : ' result') + ' for "' + search + '"');
+                } else {
+                    setInfo('No result for "' + search + '" :(');
+                }
+
+                statusService.setInfo(animes.length + ' animes');
+
+            }, function (error) {
+                if (error.status !== -1) {
+                    alertModal.show('Error', error.statusText).then(function () {
+                        statusService.setLoadStatus(null);
+                    });
+                }
+            });
 
             $scope.$applyAsync(function () {
                 $scope.search = '';
@@ -79,7 +111,8 @@
 
                     statusService.setProgression(100);
                     statusService.setInfo(animes.length + ' animes');
-                }, function(error) {
+
+                }, function (error) {
                     if (error.status !== -1) {
                         alertModal.show('Error', error.statusText).then(function () {
                             statusService.setLoadStatus(null);

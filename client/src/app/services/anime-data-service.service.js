@@ -18,6 +18,7 @@
             getAnimeDetails: getAnimeDetails,
             getAnimeList: getAnimeList,
             getTopList: getTopList,
+            search: search,
             updateAnime: updateAnime
         };
 
@@ -137,6 +138,11 @@
             }
 
             return apiRequest('GET', config.apiUrl + '/toplist/' + list + '/' + page);
+        }
+
+        function search(search, options) {
+            $log.debug('animeDataService->search()');
+            return apiRequest('GET', config.apiUrl + '/search/' + encodeURIComponent(search));
         }
 
         function updateAnime(user, id, secureKey, animeInfo) {

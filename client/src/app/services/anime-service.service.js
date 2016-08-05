@@ -64,7 +64,6 @@
 
         return {
             addAnime: addAnime,
-            applySearch: applySearch,
             deleteAnime: deleteAnime,
             editAnime: editAnime,
             getAnimeDetails: getAnimeDetails,
@@ -75,6 +74,7 @@
             getUserLists: getUserLists,
             logout: logout,
             merge: merge,
+            search: search,
             sites: sites,
             updateAnimeList: updateAnimeList,
             updateDetails: updateDetails,
@@ -97,57 +97,6 @@
             }, function (error) {
                 return $q.reject(error);
             });
-        }
-
-        function applySearch(search, search_type, search_score, search_status, search_rated, search_startMonth, search_startYear, search_endMonth, search_endYear) {
-            $log.debug('animeService->applySearch()');
-
-            // if (search.length >= 2) {
-            //
-            //     animeDataService.abortAll();
-            //
-            //     $rootScope.$applyAsync(function () {
-            //         //setLoadStatus('Searching...');
-            //         //setLoadProgression(0);
-            //     });
-            //
-            //     $.ajax({
-            //         url: 'api.php?type=search&q=' + encodeURIComponent(search) + '&stype=' + search_type + '&score=' + search_score + '&status=' + search_status + '&r=' + search_rated + '&sm=' + search_startMonth + '&sy=' + search_startYear + '&em=' + search_endMonth + '&ey=' + search_endYear + '&login=' + login + '&secureKey=' + secureKey,
-            //         dataType: 'json'
-            //
-            //     }).done(function (data) {
-            //
-            //         if (jQuery.isEmptyObject(data)) {
-            //             //setListInfo('No result for "' + search + '" :(');
-            //             //sortBy(null);
-            //             //setLoadProgression(100);
-            //         } else {
-            //             var nbAnimesToLoad = 0,
-            //                 animes;
-            //
-            //             if (data.anime[1]) { // Avoid error when there is only one anime on the list
-            //                 animes = data.anime;
-            //             } else {
-            //                 animes = data;
-            //             }
-            //
-            //             // TODO update that to the new version
-            //             updateWatchedData(animes).then(function () {
-            //                 self.search = [];
-            //
-            //                 animes.forEach(function (anime) {
-            //                     nbAnimesToLoad++;
-            //                     self.search.push(anime);
-            //                 });
-            //
-            //                 //self.animes = _.clone(self.search);
-            //                 //setListInfo(self.animes.length + (self.animes.length > 1 ? ' results' : ' result') + ' for "' + search + '"');
-            //                 //sortBy('title');
-            //                 updateDetails('search', animes, nbAnimesToLoad);
-            //             });
-            //         }
-            //     });
-            // }
         }
 
         function deleteAnime(anime) {
@@ -304,6 +253,23 @@
                     data1[key] = data2[key];
                 }
             }
+        }
+
+        function search(search, options) {
+            $log.debug('animeService->search()');
+
+            animeDataService.abortAll();
+
+            var promises = [animeDataService.search(search, options), updateAnimeList()];
+
+            return $q.all(promises).then(function (data) {
+                var res = data[0];
+                updateWatchedData(res);
+                return res;
+
+            }, function (error) {
+                return $q.reject(error);
+            });
         }
 
         function updateAnimeList() {
