@@ -16,7 +16,7 @@
             <label class="col-xs-4 control-label">Episodes</label>
             <div class="col-xs-8">
                 <input class="form-control" type="number" ng-model="myWatchedEpisodes" required/>
-                <span> / &nbsp;{{anime.episodes || format}}</span>
+                <span> / &nbsp;{{anime.episodes | format}}</span>
             </div>
         </div>
         <div class="form-group rating-container">
